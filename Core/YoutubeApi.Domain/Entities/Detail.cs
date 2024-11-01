@@ -9,6 +9,10 @@ namespace YoutubeApi.Domain.Entities
 {
     public class Detail : EntityBase
     {
+        public Detail()
+        {
+        }
+
         public Detail(string title, string description,int categotyid) {
         
             Title = title;

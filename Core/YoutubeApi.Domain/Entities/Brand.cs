@@ -9,6 +9,10 @@ namespace YoutubeApi.Domain.Entities
 {
     public class Brand(string name) : EntityBase
     {
+        public Brand()
+        {
+        }
+
         public required string Name { get; set; } = name;
     }
 }
