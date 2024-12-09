@@ -28,7 +28,6 @@ namespace YoutubeApi.Persistence.Repositories
 
         public async Task<T> UpdateAsync(T entity)
         {
-        
             await Task.Run(() => Table.Update(entity));
             return entity;
         }

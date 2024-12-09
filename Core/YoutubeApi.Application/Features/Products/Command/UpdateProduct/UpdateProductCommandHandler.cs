@@ -33,7 +33,7 @@ namespace YoutubeApi.Application.Features.Products.Command.UpdateProduct
                 await unitOfWork.GetWriteRepository<ProductCategory>()
                     .AddAsync(new() { CategoryId = categoryId, ProductId = product.Id });
 
-            await unitOfWork.GetWriteRepository<Product>().UpdateAsync(product);
+            await unitOfWork.GetWriteRepository<Product>().UpdateAsync(map);
             await unitOfWork.SaveAsync();
         }
     }
