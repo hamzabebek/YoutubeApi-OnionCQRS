@@ -1,6 +1,9 @@
 using YoutubeApi.Persistence;
 using YoutubeApi.Application;
 using FirstApi.Mapper;
+using YoutubeApi.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +24,9 @@ builder.Configuration.
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddCustomMapper();
+builder.Services.AddDbContext<AppDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+           .EnableSensitiveDataLogging());
 
 var app = builder.Build();
 
