@@ -4,6 +4,7 @@ using FirstApi.Mapper;
 using YoutubeApi.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using YoutubeApi.Application.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +39,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.ConfigureExceptionHandlingMiddleware();
 app.UseAuthorization();
 
 app.MapControllers();
