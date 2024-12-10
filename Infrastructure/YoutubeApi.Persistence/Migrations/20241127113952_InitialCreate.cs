@@ -94,24 +94,24 @@ namespace YoutubeApi.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CategoryProduct",
+                name: "ProductCategories",
                 columns: table => new
                 {
-                    CategoriesId = table.Column<int>(type: "int", nullable: false),
-                    ProductsId = table.Column<int>(type: "int", nullable: false)
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryProduct", x => new { x.CategoriesId, x.ProductsId });
+                    table.PrimaryKey("PK_ProductCategories", x => new { x.ProductId, x.CategoryId });
                     table.ForeignKey(
-                        name: "FK_CategoryProduct_Categories_CategoriesId",
-                        column: x => x.CategoriesId,
+                        name: "FK_ProductCategories_Categories_CategoryId",
+                        column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CategoryProduct_Products_ProductsId",
-                        column: x => x.ProductsId,
+                        name: "FK_ProductCategories_Products_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -122,9 +122,9 @@ namespace YoutubeApi.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "IsDeleted", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 11, 1, 21, 56, 43, 522, DateTimeKind.Local).AddTicks(4324), false, "Movies, Electronics & Jewelery" },
-                    { 2, new DateTime(2024, 11, 1, 21, 56, 43, 522, DateTimeKind.Local).AddTicks(4335), false, "Industrial, Beauty & Outdoors" },
-                    { 3, new DateTime(2024, 11, 1, 21, 56, 43, 522, DateTimeKind.Local).AddTicks(4339), false, "Computers" }
+                    { 1, new DateTime(2024, 11, 27, 14, 39, 51, 868, DateTimeKind.Local).AddTicks(654), false, "Automotive" },
+                    { 2, new DateTime(2024, 11, 27, 14, 39, 51, 868, DateTimeKind.Local).AddTicks(3605), false, "Sports & Beauty" },
+                    { 3, new DateTime(2024, 11, 27, 14, 39, 51, 868, DateTimeKind.Local).AddTicks(3659), false, "Music" }
                 });
 
             migrationBuilder.InsertData(
@@ -132,10 +132,10 @@ namespace YoutubeApi.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "IsDeleted", "Name", "ParentId", "Priorty" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 11, 1, 21, 56, 43, 522, DateTimeKind.Local).AddTicks(5355), false, "Elektrik", 0, 1 },
-                    { 2, new DateTime(2024, 11, 1, 21, 56, 43, 522, DateTimeKind.Local).AddTicks(5357), false, "Moda", 0, 2 },
-                    { 3, new DateTime(2024, 11, 1, 21, 56, 43, 522, DateTimeKind.Local).AddTicks(5358), false, "Bilgisayar", 1, 1 },
-                    { 4, new DateTime(2024, 11, 1, 21, 56, 43, 522, DateTimeKind.Local).AddTicks(5359), false, "Bilgisayar", 1, 2 }
+                    { 1, new DateTime(2024, 11, 27, 14, 39, 51, 869, DateTimeKind.Local).AddTicks(2665), false, "Elektrik", 0, 1 },
+                    { 2, new DateTime(2024, 11, 27, 14, 39, 51, 869, DateTimeKind.Local).AddTicks(2668), false, "Moda", 0, 2 },
+                    { 3, new DateTime(2024, 11, 27, 14, 39, 51, 869, DateTimeKind.Local).AddTicks(2670), false, "Bilgisayar", 1, 1 },
+                    { 4, new DateTime(2024, 11, 27, 14, 39, 51, 869, DateTimeKind.Local).AddTicks(2672), false, "Bilgisayar", 1, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -143,9 +143,9 @@ namespace YoutubeApi.Persistence.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "Description", "IsDeleted", "Title" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 11, 1, 21, 56, 43, 523, DateTimeKind.Local).AddTicks(6085), "Vitae çobanın et explicabo consequatur.\nAdipisci için dağılımı sed ipsum ut lakin nemo değerli.\nRem sıla suscipit numquam ipsa aliquam eum sayfası ipsum praesentium.\nHesap fugit blanditiis lambadaki de et gidecekmiş.\nKoyun vel gitti alias yazın ki eum ea gitti.", false, "Et bundan ut magni sed okuma gül quia dolore alias." },
-                    { 2, 3, new DateTime(2024, 11, 1, 21, 56, 43, 523, DateTimeKind.Local).AddTicks(6154), "Doloremque beatae consequuntur.\nUt de incidunt vel explicabo de magni suscipit consequuntur.\nSit kapının orta.\nİçin mutlu yapacakmış koyun.\nMagni sit çarpan.", true, "Sokaklarda vitae çıktılar bahar çarpan consequatur exercitationem." },
-                    { 3, 4, new DateTime(2024, 11, 1, 21, 56, 43, 523, DateTimeKind.Local).AddTicks(6258), "İure telefonu non cesurca domates.\nKalemi gördüm koşuyorlar hesap doloremque quia duyulmamış praesentium suscipit alias.\nDicta voluptas beatae.\nOdit et eum cesurca telefonu sokaklarda salladı eaque ama.\nHesap duyulmamış odit dolayı salladı.", false, "Dolayı anlamsız dağılımı patlıcan dicta reprehenderit minima gül." }
+                    { 1, 1, new DateTime(2024, 11, 27, 14, 39, 51, 883, DateTimeKind.Local).AddTicks(6734), "Bundan beatae şafak totam ve.\nYaptı quia dicta ab architecto enim kutusu.\nSıla reprehenderit anlamsız filmini teldeki voluptas öyle consequatur iusto.\nRatione sequi amet aspernatur vitae voluptatum.\nSayfası çakıl gitti ut.", false, "Odio patlıcan velit gülüyorum nesciunt." },
+                    { 2, 3, new DateTime(2024, 11, 27, 14, 39, 51, 883, DateTimeKind.Local).AddTicks(6914), "Değirmeni dağılımı de consequatur sinema sit fugit çarpan ışık.\nSıla accusantium kalemi ut çıktılar qui sed bilgiyasayarı.\nAdresini sıradanlıktan voluptatem camisi voluptatem dergi ipsum.\nAlias anlamsız ona odit aliquam ki et quia sequi layıkıyla.\nGöze biber dicta ipsa voluptatem quis explicabo.", true, "Enim sequi aperiam tv fugit incidunt explicabo." },
+                    { 3, 4, new DateTime(2024, 11, 27, 14, 39, 51, 883, DateTimeKind.Local).AddTicks(7006), "Ut minima illo aliquid beğendim bahar.\nVoluptatem çakıl ratione camisi non fugit.\nOdio esse laudantium ullam voluptate voluptatem kalemi laboriosam.\nVoluptas yazın modi exercitationem incidunt cesurca bilgiyasayarı sed.\nArchitecto ve türemiş enim odio camisi bundan domates.", false, "İncidunt ab ullam filmini." }
                 });
 
             migrationBuilder.InsertData(
@@ -153,18 +153,18 @@ namespace YoutubeApi.Persistence.Migrations
                 columns: new[] { "Id", "BrandId", "CreatedDate", "Description", "Discount", "IsDeleted", "Price", "Title" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 11, 1, 21, 56, 43, 524, DateTimeKind.Local).AddTicks(7770), "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart", 7.112840709805890m, false, 933.35m, "Intelligent Concrete Ball" },
-                    { 2, 3, new DateTime(2024, 11, 1, 21, 56, 43, 524, DateTimeKind.Local).AddTicks(7789), "The Football Is Good For Training And Recreational Purposes", 1.906775606947090m, false, 72.62m, "Handmade Soft Bike" }
+                    { 1, 1, new DateTime(2024, 11, 27, 14, 39, 51, 894, DateTimeKind.Local).AddTicks(8677), "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals", 3.905406324244810m, false, 545.29m, "Gorgeous Fresh Tuna" },
+                    { 2, 3, new DateTime(2024, 11, 27, 14, 39, 51, 894, DateTimeKind.Local).AddTicks(8765), "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016", 0.09220333024784640m, false, 183.27m, "Refined Granite Fish" }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CategoryProduct_ProductsId",
-                table: "CategoryProduct",
-                column: "ProductsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Details_CategoryId",
                 table: "Details",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCategories_CategoryId",
+                table: "ProductCategories",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
@@ -177,16 +177,16 @@ namespace YoutubeApi.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CategoryProduct");
-
-            migrationBuilder.DropTable(
                 name: "Details");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "ProductCategories");
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Brands");

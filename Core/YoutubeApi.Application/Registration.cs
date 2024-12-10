@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using YoutubeApi.Application.Exceptions;
 
 
 namespace YoutubeApi.Application
@@ -11,6 +12,8 @@ namespace YoutubeApi.Application
         {
 
             var assembly = Assembly.GetExecutingAssembly();
+
+            services.AddTransient<ExceptionMiddleware>();
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
         }
