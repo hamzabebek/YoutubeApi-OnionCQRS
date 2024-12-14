@@ -1,5 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -50,12 +51,31 @@ namespace YoutubeApi.Infrastructure.Tokens
 
         public string GenerateRefreshToken()
         {
-            throw new NotImplementedException();
+            var randomNumber = new byte[64];
+            using var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(randomNumber);
+            return Convert.ToBase64String(randomNumber);
         }
 
-        public ClaimsPrincipal? GetPrincipalFromExpiredToken()
+        public ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token)
         {
-            throw new NotImplementedException();
+            TokenValidationParameters tokenValidationParameters = new()
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenSettings.Secret)),
+                ValidateLifetime = false,
+            };
+
+            JwtSecurityTokenHandler tokenHandler = new();
+            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
+            if(securityToken is not JwtSecurityToken jwtSecurityToken 
+                || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256,
+                StringComparison.InvariantCultureIgnoreCase))
+                throw new SecurityTokenException("Token bulunamadı !");
+
+            return principal;
         }
     }
 }
