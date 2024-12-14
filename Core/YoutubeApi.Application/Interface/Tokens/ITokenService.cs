@@ -10,6 +10,6 @@ namespace YoutubeApi.Application.Interface.Tokens
 
         string GenerateRefreshToken();
 
-        ClaimsPrincipal? GetPrincipalFromExpiredToken();
+        ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token);
     }
 }
