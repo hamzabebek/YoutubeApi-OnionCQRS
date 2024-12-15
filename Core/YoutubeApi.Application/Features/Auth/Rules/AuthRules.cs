@@ -16,5 +16,11 @@ namespace YoutubeApi.Application.Features.Auth.Rules
             if (user is not null) throw new UserAlreadyExitsException();
             return Task.CompletedTask;
         }
+
+        public Task EmailOrPasswordShoulNotBeInvalid(User? user, bool checkPassword)
+        {
+            if (user is null || !checkPassword) throw new EmailOrPasswordShoulNotBeInvalidException();
+            return Task.CompletedTask;
+        }
     }
 }
